@@ -1,0 +1,9 @@
+{
+	"dependencies": {
+		"@types/node": "^22.5.0",
+		"lavalink-client": "^2.2.2",
+		"seyfert": "github:tiramisulabs/seyfert",
+		"typescript": "^5.5.4",
+		"yunaforseyfert": "1.0.0-beta.2"
+	}
+}

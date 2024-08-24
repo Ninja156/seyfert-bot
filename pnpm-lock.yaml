@@ -1,0 +1,92 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@types/node':
+        specifier: ^22.5.0
+        version: 22.5.0
+      lavalink-client:
+        specifier: ^2.2.2
+        version: 2.2.2
+      seyfert:
+        specifier: github:tiramisulabs/seyfert
+        version: https://codeload.github.com/tiramisulabs/seyfert/tar.gz/2597c3c18d0f1667a56a381838015e65cf4c0820
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+      yunaforseyfert:
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2
+
+packages:
+
+  '@types/node@22.5.0':
+    resolution: {integrity: sha512-DkFrJOe+rfdHTqqMg0bSNlGlQ85hSoh2TPzZyhHsXnMtligRWpxUySiyw8FY14ITt24HVCiQPWxS3KO/QlGmWg==}
+
+  lavalink-client@2.2.2:
+    resolution: {integrity: sha512-3pUmVYdfAvv3nnoEDqdPQ1m9sAwzuqjewhe/fqYqd0sfiatXQpcknRuZlECii1XL9l1ucdAPYp97MHjNoGY9vQ==}
+    engines: {node: '>=18.0.0'}
+
+  seyfert@https://codeload.github.com/tiramisulabs/seyfert/tar.gz/2597c3c18d0f1667a56a381838015e65cf4c0820:
+    resolution: {tarball: https://codeload.github.com/tiramisulabs/seyfert/tar.gz/2597c3c18d0f1667a56a381838015e65cf4c0820}
+    version: 1.5.0
+
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+
+  typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  undici-types@6.19.8:
+    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
+
+  ws@8.18.0:
+    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  yunaforseyfert@1.0.0-beta.2:
+    resolution: {integrity: sha512-4MuOoRgyIjyd50xY1lQeJbMF4Y/YnVzjrmdXnVopMnnxFopRBa5fSZrATwxWKcr/uWvPNZ44ZC8dgwdwyQdAMg==}
+
+snapshots:
+
+  '@types/node@22.5.0':
+    dependencies:
+      undici-types: 6.19.8
+
+  lavalink-client@2.2.2:
+    dependencies:
+      tslib: 2.6.3
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  seyfert@https://codeload.github.com/tiramisulabs/seyfert/tar.gz/2597c3c18d0f1667a56a381838015e65cf4c0820: {}
+
+  tslib@2.6.3: {}
+
+  typescript@5.5.4: {}
+
+  undici-types@6.19.8: {}
+
+  ws@8.18.0: {}
+
+  yunaforseyfert@1.0.0-beta.2:
+    dependencies:
+      seyfert: https://codeload.github.com/tiramisulabs/seyfert/tar.gz/2597c3c18d0f1667a56a381838015e65cf4c0820
