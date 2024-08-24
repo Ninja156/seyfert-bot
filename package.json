@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"dev": "npx tsc && node ./dist/index.js"
+	},
 	"dependencies": {
 		"@types/node": "^22.5.0",
 		"lavalink-client": "^2.2.2",

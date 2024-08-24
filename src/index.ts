@@ -29,12 +29,20 @@ client.lavalink = new LavalinkManager({
 
   })
   // client.lavalink.nodeManager.on("raw", (json) => console.info(json))
+  client.lavalink.on("trackError", (_player, track, payload) => {
+    console.log("trackError", "track", track, "payload", payload);
+  });
+  client.lavalink.on("trackStuck", (_player, track, payload) => {
+    console.log("trackStuck", "track", track, "payload", payload);
+  });
+  client.lavalink.on("trackStart", (_player, track, payload) => {
+    console.log("trackStart", "track", track, "payload", payload);
+  });
+
 class YourHandleCommand extends HandleCommand {
   argsParser = Yuna.parser(); // Here are the settings, but that will be explained below
 }
 
-
-// your bot's client
 client.setServices({
   handleCommand: YourHandleCommand,
 });
