@@ -3,7 +3,7 @@ const { config } = require('seyfert');
 
 const { GatewayIntentBits } = require('seyfert/lib/types/index.js');
 module.exports = config.bot({
-   token: process.env.BOT_TOKEN ?? "",
+   token: process.env.BOT_TOKEN ?? "", // save changes
    intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.MessageContent,
