@@ -4,7 +4,7 @@ export default createEvent({
   data: { once: true, name: "botReady" },
   run(user, client) {
     client.logger.info(`${user.username} is ready`);
-    client.lavalink.init({ ...user }); 
+    client.lavalink.init({ id: user.id }); 
     client.gateway.setPresence({
       since: null,
       status: PresenceUpdateStatus.Idle,

@@ -1,54 +1,60 @@
 
+process.loadEnvFile();
+
 import { Client, ParseClient } from "seyfert";
 
 import { LavalinkManager } from "lavalink-client";
 import { HandleCommand } from "seyfert/lib/commands/handle";
 import { Yuna } from "yunaforseyfert";
 
-const client = new Client({
-  commands: {
-    prefix: () => {
-        return ['!']
-    }
-}
-}) as Client & { lavalink: LavalinkManager }; 
+//Use a custom client to make the types work
+class CustomClient extends Client<true> {
+  readonly lavalink: LavalinkManager;
 
+  constructor() {
+    super({
+      commands: {
+        prefix: () => ["arle"]
+      }
+    });
 
-client.lavalink = new LavalinkManager({
-  nodes: [
-      { 
-          authorization: "jompo",
-          host: "lavalink.jompo.cloud",
+    this.lavalink = new LavalinkManager({
+      sendToShard: (guildId, payload) => this.gateway.send(this.gateway.calculateShardId(guildId), payload),
+      nodes: [
+        {
+          authorization: "ganyuontopuwu",
+          host: "localhost",
           port: 2333,
           id: "Node"
-      }
-  ],
-  autoSkipOnResolveError: true,
-  sendToShard: (guildId, payload) =>
-    client.gateway.send(client.gateway.calculateShardId(guildId), payload)
-
-  })
-  // client.lavalink.nodeManager.on("raw", (json) => console.info(json))
-  client.lavalink.on("trackError", (_player, track, payload) => {
-    console.log("trackError", "track", track, "payload", payload);
-  });
-  client.lavalink.on("trackStuck", (_player, track, payload) => {
-    console.log("trackStuck", "track", track, "payload", payload);
-  });
-  client.lavalink.on("trackStart", (_player, track, payload) => {
-    console.log("trackStart", "track", track, "payload", payload);
-  });
-
-class YourHandleCommand extends HandleCommand {
-  argsParser = Yuna.parser(); // Here are the settings, but that will be explained below
+        }
+      ],
+    })
+  }
 }
+const client = new CustomClient();
+
+//client.lavalink.nodeManager.on("raw", (json) => console.info(json))
+client.lavalink.nodeManager.on("connect", (node) => console.info(`The node ${node.id} is connected`))
+client.lavalink.nodeManager.on("disconnect", (node) => console.info(`The node ${node.id} is disconnected`))
+
+client.lavalink.on("trackError", (_player, track, payload) => {
+  console.log("trackError", { track, payload });
+});
+client.lavalink.on("trackStuck", (_player, track, payload) => {
+  console.log("trackStuck", { track, payload });
+});
+client.lavalink.on("trackStart", (_player, track, payload) => {
+  console.log("trackStart", { track, payload });
+});
 
 client.setServices({
-  handleCommand: YourHandleCommand,
+  handleCommand: class extends HandleCommand {
+    argsParser = Yuna.parser(); // Here are the settings, but that will be explained below
+  },
 });
 
 declare module "seyfert" {
-  interface UsingClient extends ParseClient<Client<true>> { lavalink: LavalinkManager }
+  interface UsingClient extends ParseClient<CustomClient> { }
   interface InternalOptions {
     withPrefix: true;
   }

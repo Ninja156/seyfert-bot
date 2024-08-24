@@ -11,7 +11,7 @@ export default class PingCommand extends Command {
     const ping = ctx.client.gateway.latency;
 
     await ctx.write({
-      content: `The ping is \`${ping}\``
+      content: `The ping is \`${ping}ms\``
     });
   }
 }
